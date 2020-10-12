@@ -53,6 +53,24 @@ int main(int argc, char* argv[]) {
 
 > A: 
 
+**第三种题型**，考察对指定代码的编写，比如定义一个类型、实现一个函数等。
+
+Q: 如下为类型 CMyString 的声明，请为该类型添加赋值运算符函数。
+
+```cpp
+class CMyString {
+private:
+    char* m_pData;
+
+public:
+    CMyString(char* pData = nullptr);
+    CMyString(const CMyString& str);
+    ~CMyString(void);
+};
+```
+
+> A: 
+
 ## 数据结构
 
 ## 算法和数据操作
