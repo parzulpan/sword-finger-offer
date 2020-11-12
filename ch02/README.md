@@ -421,14 +421,587 @@ public:
 
 C/C++ 中每个字符串都以字符 '\0'作为结尾，所以每个字符都有一个额外字符的开销，稍不留神就会造成字符串的越界。
 
-**Q:**
+为了节省内存，C/C++ 把常量字符串放到单独的一个内存区域。当几个指针赋值给相同的常量字符串时，它们实际上会指向相同的内存地址。但是用常量内存初始化数组，情况却有所不同。
 
-.
+**Q:** 下面的代码的输出结果是？
+
+**A:** str1 和 str2 是两个字符串数组，是两个初始地址不同的数组，所以 str1 和 str2 不相等。而 str3 和 str4 是两个指针指向同一个常量字符串。
+
+```cpp
+#include<iostream>
+
+int main(int argc, char* argv[]) {
+    char str1[] = "hello world";
+    char str2[] = "hello world";
+
+    char* str3 = "hello world";
+    char* str4 = "hello world";
+
+    if(str1 == str2) {
+        std::cout << "str1 and str2 are same." << std::endl;
+    } else {
+        std::cout << "str1 and str2 are not same." << std::endl;    // 输出
+    }
+
+    if(str3 == str4) {
+        std::cout << "str3 and str4 are same." << std::endl;    // 输出
+    } else {
+        std::cout << "str3 and str4 are not same." << std::endl;
+    }
+
+    return 0;
+}
+```
+
+**Q:** 请实现一个函数，把字符串中的每个空格替换成"%20"。例如，输入“We are happy.”，则输出“We%20are%20happy.”。
+
+**A:** 解法一 可以使用遍历添加，用一个字符串存储结果。
+
+```cpp
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Solution {
+public:
+    string replaceSpace(string s) {
+        string result;  // 存储替换后的结果
+
+        for(auto &c : s) {  // 遍历目标字符串
+            if(c == ' ') {
+                result += "%20";
+            } else {
+                result += c;
+            }
+        }
+
+        return result;
+    }
+};
+```
+
+```python
+class Solution:
+    def replaceSpace(self, s: str) -> str:
+        res  = []
+        for c in s:
+            if c == ' ':
+                res.append("%20")
+            else:
+                res.append(c)
+        return "".join(res)
+```
+
+解法二 可以先统计出空格数量，进行倒序遍历原地修改。
+
+```cpp
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Solution {
+public:
+    string replaceSpace(string s) {
+        int cnt = 0, len = s.size();
+
+        for(char &c: s) {
+            if(c == ' ') {
+                ++cnt;
+            }
+        }
+        if(cnt != 0) {
+            s.resize(len + 2 * cnt);    // 修改 s 长度
+        }
+
+        // 倒序遍历原地修改
+        for(int i = len - 1, j = s.size() - 1; i < j; --i, --j) {
+            if(s[i] != '') {
+                s[j] = s[i];
+            } else {
+                s[j - 2] = '%';
+                s[j - 1] = '2';
+                s[j] = '0';
+                j -= 2;
+            }
+
+        }
+
+        return s;
+    }
+};
+```
+
+**Q:** 有两个排序的数组 A1 和 A2，内存在 A1 的末尾有足够多的空余空间容纳 A2。请实现一个函数，把 A2 中的所有数字插入 A1 中，并且所有的数字是排序的。
+
+**A:** 倒序比较 A1 和 A2 的数字，并把较大的数字，复制到 A1 中的合适位置。
+
+```cpp
+class Solution {
+public:
+    void merge(int[] A1, int[] A2, int lenA1, int lenA2) {
+        int indexA1 = lenA1 - 1;
+        int indexA2 = lenA2 - 1;
+        int indexMerged = lenA1 + indexA2 - 1;
+
+        while(indexA1 >= 0 && indexA2 >= 0) {
+            if(A1[indexA1] >= A2[indexA2]) {
+                A1[indexMerged] = A1[indexA1];
+                --indexMerged;
+                --indexA1;
+            } else {
+                A1[indexMerged] = A1[indexA2];
+                --indexMerged;
+                --indexA2;
+            }
+        }
+
+        while(indexA1 >= 0) {
+            A1[indexMerged] = A1[indexA1];
+                --indexMerged;
+                --indexA1;
+        }
+
+        while(indexA2 >= 0) {
+            A1[indexMerged] = A1[indexA2];
+                --indexMerged;
+                --indexA2;
+        }
+    }
+}
+```
+
+**总结:** 在合并数组或者字符串时，如果正序复制需要移动很多次，可以考虑倒序复制，这样可以减少移动的次数，从而提高效率。
+
+### 链表
+
+单链表的节点定义为：
+
+```cpp
+// Definition for singly-linked list.
+struct ListNode {
+    int val;
+    ListNode *next;
+    ListNode(int x) : val(x), next(NULL) {}
+};
+```
+
+**Q:** 输入一个链表的头节点，从尾到头反过来打印每个节点的值。
+
+**A:** 解法一 辅助栈法
+
+```cpp
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    vector<int> reversePrint(ListNode* head) {
+        vector<int> res;
+        stack<int> s;
+
+        ListNode *p = head;
+
+        while(p) {
+            s.push(p->val);
+            p = p->next;
+        }
+
+        while(!s.empty()) {
+            res.push_back(s.top());
+            s.pop();
+        }
+
+        return res;
+    }
+};
+
+
+class Solution {
+public:
+    vector<int> reversePrint(ListNode* head) {
+        vector<int> res;
+        ListNode *p = head;
+
+        while(p) {
+            res.push_back(p->val);
+            p = p->next;
+        }
+
+        reverse(res.begin(), res.end());
+
+        return res;
+    }
+};
+```
+
+```python
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def reversePrint(self, head: ListNode) -> List[int]:
+        stack = []
+        while head:
+            stack.append(head.val)
+            head = head.next
+
+        return stack[::-1]
+```
+
+解法二 递归法
+
+```cpp
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    vector<int> reversePrint(ListNode* head) {
+        if(!head) {
+            return {};
+        }
+
+        vector<int> res = reversePrint(head->next);
+        res.push_back(head->val);
+
+        return res;
+    }
+};
+```
+
+```python
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def reversePrint(self, head: ListNode) -> List[int]:
+        return self.reversePrint(head.next) + [head.val] if head else []
+```
+
+### 树
+
+树的常用几种遍历方式：
+
+* 前序遍历：先访问根节点，再访问左子节点，最后访问右子节点。
+* 中序遍历：先访问左子节点，再访问根节点，最后访问右子节点。
+* 后序遍历：先访问左子节点，再访问右子节点，最后访问根节点。
+* 宽度优先遍历：先访问树的第一层节点，再访问树的第二层节点...一直到访问到最下面一层节点。
+
+在二叉搜索树中，左子节点总是小于或等于二根节点，而右子节点总是大于或等于根节点。可以平均在 O(logn) 的时间内根据数值在二叉搜索树中找到一个节点。
+
+二叉树的一个特例是堆，最大堆中根节点的值最大，最小堆中根节点的值最小。
+
+二叉树另一个特例是红黑树，它把树中的节点定义为红、黑两种颜色，并通过规则确保从根节点到叶节点的最长路径的长度不超过最短路径的两倍。
+
+**Q:** 输入某二叉树的前序遍历和中序遍历的结果，请重建该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。例如，给出前序遍历 preorder = [3,9,20,15,7] 和 中序遍历 inorder = [9,3,15,20,7]，则返回如下的二叉树：
+
+```cpp
+    3
+   / \
+  9  20
+    /  \
+   15   7
+```
+
+限制：0 <= 节点个数 <= 5000
+
+**A:** 若前序遍历或中序遍历或两者序列长度不同，则返回空。前序遍历的第一个节点即为根节点，在中序遍历中找到根节点的位置，分别得到左右子树的前序和中序遍历，然后递归重建即可。
+
+```cpp
+class Solution {
+public:
+    TreeNode *buildTree(vector<int> &preorder, vector<int> &inorder) {
+        int lenP = preorder.size(), lenI = inorder.size();
+        if(lenP == 0 || lenI == 0 || lenP != lenI) {
+            return nullptr;
+        }
+
+        vector<int> preorderL, preorderR, inorderL, inorderR;
+        int rootIndex = -1;
+        TreeNode *root = new TreeNode(preorder[0]); // 根节点
+
+        // 在中序遍历中找到根节点的位置
+        for(int i = 0; i < lenP; ++i) {
+            if(preorder[0] == inorder[i]) {
+                rootIndex = i;
+                break;
+            }
+        }
+
+        // 分别得到左右子树的前序和中序遍历
+        for(int i = 0; i < rootIndex; ++i) {
+            preorderL.push_back(preorder[i+1]);
+            inorderL.push_back(inorder[i]);
+        }
+        for(int i = rootIndex + 1; i < lenP; ++i) {
+            preorderR.push_back(preorder[i]);
+            inorderR.push_back(inorder[i]);
+        }
+
+        // 递归重建
+        root->left = buildTree(preorderL, inorderL);
+        root->right = buildTree(preorderR, inorderR);
+
+        return root;
+    }
+};
+```
+
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def buildTree(self, preorder: List[int], inorder: List[int]) -> TreeNode:
+        lenP = len(preorder)
+        lenI = len(inorder)
+        if lenP == 0 or lenI == 0 or lenP != lenI:
+            return None
+
+        preorderL, preorderR, inorderL, inorderR = [], [], [], []
+        rootIndex = -1
+        root = TreeNode(preorder[0])
+
+        # 在中序遍历中找到根节点的位置
+        for index, val in enumerate(inorder):
+            if val == preorder[0]:
+                rootIndex = index
+                break
+
+        # 分别得到左右子树的前序和中序遍历
+        i = 0
+        while i < rootIndex:
+            preorderL.append(preorder[i+1])
+            inorderL.append(inorder[i])
+            i = i + 1
+        i = rootIndex + 1
+        while i < lenP:
+            preorderR.append(preorder[i])
+            inorderR.append(inorder[i])
+            i = i + 1
+
+        # 递归重建
+        root.left = self.buildTree(preorderL, inorderL)
+        root.right = self.buildTree(preorderR, inorderR)
+
+        return root
+```
+
+### 栈和队列
+
+栈在计算机领域被广泛使用，比如操作系统会给每个线程创建一个栈用来存储函数时各个函数的参数、返回地址和临时变量等。它的特点是先进后出。
+
+队列的特点是先进先出。
+
+**Q:** 面试题 9：用两个栈实现队列。用两个栈使用一个队列。队列的声明如下，请实现它的两个函数 appendTail 和 deleteHead，分别完成在队列尾部插入节点和队列头部删除节点的功能。
+
+```cpp
+template <typename T> class CQueue {
+public:
+    CQueue(void);
+    ~CQueue(void);
+
+    void appendTail(const T& node);
+    T deleteHead();
+
+private:
+    stack<T> stack1;
+    stack<T> stack2;
+};
+```
+
+**A:** 用一个栈来中转即可。
+
+```cpp
+class CQueue {
+    stack<int> stack1,stack2;
+public:
+    CQueue() {
+
+    }
+
+    void appendTail(int value) {
+        stack1.push(value);
+    }
+
+    int deleteHead() {
+        if(stack2.empty()) {
+            while(!stack1.empty()) {
+                stack2.push(stack1.top());
+                stack1.pop();
+            }
+        }
+
+        if(stack2.empty()) {
+            return -1;
+        }
+
+        int head = stack2.top();
+        stack2.pop();
+
+        return head;
+    }
+};
+
+/**
+ * Your CQueue object will be instantiated and called as such:
+ * CQueue* obj = new CQueue();
+ * obj->appendTail(value);
+ * int param_2 = obj->deleteHead();
+ */
+```
+
+```python
+class CQueue:
+
+    def __init__(self):
+        self.A, self.B = [], []
+
+    def appendTail(self, value: int) -> None:
+        self.A.append(value)
+
+    def deleteHead(self) -> int:
+        if self.B:
+            return self.B.pop()
+
+        if not self.A:
+            return -1
+
+        while self.A:
+            self.B.append(self.A.pop())
+
+        return self.B.pop()
+
+
+
+# Your CQueue object will be instantiated and called as such:
+# obj = CQueue()
+# obj.appendTail(value)
+# param_2 = obj.deleteHead()
+```
+
+## 算法和数据操作
+
+很多算法都可以用**递归和循环**两种不同的方式实现。通常基于递归的实现方法代码会比较简洁，但是性能不如基于循环的实现方法。
+
+**排序和查找算法**是重点中的重点，特别是二分查找、归并排序和快速排序。
+
+如果面试题要求在二维数组（可能为迷宫或者棋盘等）上搜索路径，那么可以尝试**回溯法**。通常回溯法很适合用递归的代码实现，或者用栈来模拟递归的过程。
+
+如果面试题要求某个问题的最优解，并且该问题可以分为多个子问题，那么可以尝试**动态规划**。
+
+如果面试题在分解子问题的时候存在某个特殊的选择，如果采用这个特殊的选择将一定能得到最优解，那么可以尝试**贪婪算法**。
+
+**位运算**可以看成一种特殊的算法，即把数字表示成二进制之后对 0 和 1 的操作，主要有 与、或、异或、左移、右移等五种位运算。
+
+### 递归和循环
+
+**Q:** 10- I. 斐波那契数列。写一个函数，输入 n ，求斐波那契（Fibonacci）数列的第 n 项。斐波那契数列的定义如下：
+
+```cpp
+F(0) = 0,
+F(1) = 1,
+F(N) = F(N - 1) + F(N - 2), 其中 N > 1.
+```
+
+答案需要取模 1e9+7（1000000007），如计算初始结果为：1000000008，请返回 1。
 
 **A:**
 
-.
+```cpp
 
-## 算法和数据操作
+```
+
+```python
+
+```
+
+**Q:**
+
+**A:**
+
+```cpp
+
+```
+
+```python
+
+```
+
+### 查找和排序
+
+**Q:**
+
+**A:**
+
+```cpp
+
+```
+
+```python
+
+```
+
+**Q:**
+
+**A:**
+
+```cpp
+
+```
+
+```python
+
+```
+
+### 回溯法
+
+**Q:**
+
+**A:** 
+
+**Q:** 
+
+**A:** 
+
+### 动态规划和贪婪算法
+
+**Q:**
+
+**A:** 
+
+**Q:** 
+
+**A:** 
+
+### 位运算
+
+**Q:**
+
+**A:** 
+
+**Q:** 
+
+**A:** 
 
 ## 本章小结
