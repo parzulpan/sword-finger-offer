@@ -16,8 +16,9 @@
 
 | 题目 | 标签 | 语言 |
 | :--- | :--- | :--- |
-| [03.数组中重复的数字](https://leetcode-cn.com/problems/shu-zu-zhong-zhong-fu-de-shu-zi-lcof/) | 数组 哈希表 | [Java](src/Java/03.java) [Cpp](src/Cpp/03.cpp) [Python](src/Python/03.py)|
-| | |
+| [03.数组中重复的数字](https://leetcode-cn.com/problems/shu-zu-zhong-zhong-fu-de-shu-zi-lcof/) | 数组 哈希表 | [Java](src/Java/Solution03.java) [Cpp](src/Cpp/Solution03.cpp) [Python](src/Python/Solution03.py)|
+| [04.二维数组中的查找](https://leetcode-cn.com/problems/er-wei-shu-zu-zhong-de-cha-zhao-lcof/) | 数组 双指针 | [Java](src/Java/Solution04.java) [Cpp](src/Cpp/Solution04.cpp) [Python](src/Python/Solution04.py)|
+| [05.替换空格](https://leetcode-cn.com/problems/ti-huan-kong-ge-lcof/) | 字符串 | [Java](src/Java/Solution05.java) [Cpp](src/Cpp/Solution05.cpp) [Python](src/Python/Solution05.py)|
 
 ## 参考
 

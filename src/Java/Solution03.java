@@ -16,11 +16,12 @@ import java.util.Set;
 2 <= n <= 100000
  */
 
-class Solution {
+public class Solution03 {
     public static void main(final String[] args) {
-        final Solution solution = new Solution();
+        final Solution03 solution = new Solution03();
         final int[] nums = new int[] { 2, 3, 1, 0, 2, 5, 3 };
         System.out.println(solution.findRepeatNumber(nums));
+        System.out.println(solution.findRepeatNumber2(nums));
 
     }
 
@@ -48,11 +49,11 @@ class Solution {
 
     /**
      * 方法二：原地置换
-     * 
+     * 注意所有数字都在 0～n-1 的范围内
      * @param nums
      * @return
      */
-    public int findRepeatNumber1(final int[] nums) {
+    public int findRepeatNumber2(final int[] nums) {
         int len = nums.length;
         int temp = 0;
 
