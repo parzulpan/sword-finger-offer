@@ -19,6 +19,13 @@
 | [03.数组中重复的数字](https://leetcode-cn.com/problems/shu-zu-zhong-zhong-fu-de-shu-zi-lcof/) | 数组 哈希表 | [Java](src/Java/Solution03.java) [Cpp](src/Cpp/Solution03.cpp) [Python](src/Python/Solution03.py)|
 | [04.二维数组中的查找](https://leetcode-cn.com/problems/er-wei-shu-zu-zhong-de-cha-zhao-lcof/) | 数组 双指针 | [Java](src/Java/Solution04.java) [Cpp](src/Cpp/Solution04.cpp) [Python](src/Python/Solution04.py)|
 | [05.替换空格](https://leetcode-cn.com/problems/ti-huan-kong-ge-lcof/) | 字符串 | [Java](src/Java/Solution05.java) [Cpp](src/Cpp/Solution05.cpp) [Python](src/Python/Solution05.py)|
+| [06.从尾到头打印链表](https://leetcode-cn.com/problems/cong-wei-dao-tou-da-yin-lian-biao-lcof/) | 链表 | [Java](src/Java/Solution06.java) |
+| [07.重建二叉树](https://leetcode-cn.com/problems/zhong-jian-er-cha-shu-lcof/) | 树 递归 | [Java](src/Java/Solution07.java) |
+| [08.二叉树的下一个节点](https://leetcode-cn.com/problems/) | 树 回溯 | [Java](src/Java/Solution08.java) |
+| [09.用两个栈实现队列](https://leetcode-cn.com/problems/yong-liang-ge-zhan-shi-xian-dui-lie-lcof/) | 栈 设计 | [Java](src/Java/Solution09.java) |
+| [10-I.斐波那契数列](https://leetcode-cn.com/problems/fei-bo-na-qi-shu-lie-lcof/) | 递归 动态规划 | [Java](src/Java/Solution10.java) |
+| [10-II.青蛙跳台阶问题](https://leetcode-cn.com/problems/qing-wa-tiao-tai-jie-wen-ti-lcof/) | 递归 动态规划 | [Java](src/Java/Solution10_1.java) |
+| []() |  |  |
 
 ## 参考
 
