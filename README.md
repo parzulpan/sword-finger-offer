@@ -25,6 +25,10 @@
 | [09.用两个栈实现队列](https://leetcode-cn.com/problems/yong-liang-ge-zhan-shi-xian-dui-lie-lcof/) | 栈 设计 | [Java](src/Java/Solution09.java) |
 | [10-I.斐波那契数列](https://leetcode-cn.com/problems/fei-bo-na-qi-shu-lie-lcof/) | 递归 动态规划 | [Java](src/Java/Solution10.java) |
 | [10-II.青蛙跳台阶问题](https://leetcode-cn.com/problems/qing-wa-tiao-tai-jie-wen-ti-lcof/) | 递归 动态规划 | [Java](src/Java/Solution10_1.java) |
+| [11.旋转数组的最小数字](https://leetcode-cn.com/problems/xuan-zhuan-shu-zu-de-zui-xiao-shu-zi-lcof/submissions/) | 二分查找 | [Java](src/Java/Solution11.java) |
+| [12.矩阵中的路径](https://leetcode-cn.com/problems/ju-zhen-zhong-de-lu-jing-lcof/submissions/) | DFS 剪枝 | [Java](src/Java/Solution12.java) |
+| []() |  |  |
+| []() |  |  |
 | []() |  |  |
 
 ## 参考
