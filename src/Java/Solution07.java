@@ -49,8 +49,11 @@ public class Solution07 {
             return null;
         }
 
-        TreeNode node = new TreeNode(preorder[root]);   // 建立根节点
-        int i = map.get(preorder[root]);    // 划分根节点、左右子树
+        // 建立根节点
+        TreeNode node = new TreeNode(preorder[root]);
+        int i = map.get(preorder[root]);
+
+        // 划分根节点、左右子树
         node.left = reBuild(root + 1, left, i - 1);
         node.right = reBuild(root + 1 + i - left, i + 1, right);
         return node;

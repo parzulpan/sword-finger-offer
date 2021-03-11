@@ -31,6 +31,13 @@
 | []() |  |  |
 | []() |  |  |
 
+## 补充题目
+
+| 题目 | 标签 | 语言 |
+| :--- | :--- | :--- |
+| [146.LRU 缓存](https://leetcode-cn.com/problems/lru-cache/) | 设计 |  |
+| [460.LFU 缓存](https://leetcode-cn.com/problems/lfu-cache/) | 设计 |  |
+
 ## 参考
 
 * [《剑指Offer》](https://github.com/zhedahht/CodingInterviewChinese2)

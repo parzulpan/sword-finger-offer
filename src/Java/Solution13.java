@@ -31,23 +31,8 @@ public class Solution13 {
         /**
          * 方法一：
          */
-        private int res;
         public int movingCount(int m, int n, int k) {
-            for (int i = 0; i < m; ++i) {
-                for (int j = 0; j < n; ++j) {
-                    res = max(dfs(i, j, k), res);
-                }
-            }
-
-            return res;
-        }
-
-        public int dfs(int i, int j, int k) {
-            if ( i + j > k) {
-                return res;
-            }
-
-            dfs(i + 1, j, k)
+            return 0;
         }
     }
 }

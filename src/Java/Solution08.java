@@ -38,7 +38,9 @@ public class Solution08 {
             if (node.parent.left == node) {
                 return node.parent;
             }
-            node = node.parent; // 3. 回溯
+
+            // 3. 回溯
+            node = node.parent;
         }
 
         return null;
