@@ -1,7 +1,10 @@
+package Java;
+
 import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * @author parzulpan
 
  146.LRU 缓存
 
@@ -19,6 +22,7 @@ import java.util.Map;
  0 <= key <= 3000
  0 <= value <= 104
  最多调用 3 * 104 次 get 和 put
+
  */
 
 public class LRUCache {
@@ -54,7 +58,7 @@ public class LRUCache {
 
     }
 
-    class DLinkedNode {
+    static class DLinkedNode {
         int key;
         int value;
         DLinkedNode prev;
@@ -63,10 +67,11 @@ public class LRUCache {
         DLinkedNode(int key, int value) { this.key = key; this.value = value; }
     }
 
-    private Map<Integer, DLinkedNode> cache = new HashMap<>();
+    private final Map<Integer, DLinkedNode> cache = new HashMap<>();
     private int size;
-    private int capacity;
-    private DLinkedNode head, tail;
+    private final int capacity;
+    private final DLinkedNode head;
+    private final DLinkedNode tail;
 
     public LRUCache(int capacity) {
         // 当前容量

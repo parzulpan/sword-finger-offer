@@ -1,6 +1,9 @@
+package Java;
+
 import java.util.HashMap;
 
 /**
+ * @author parzulpan
 
 【剑指 Offer】10-I.斐波那契数列
 
@@ -14,8 +17,7 @@ F(N) = F(N - 1) + F(N - 2), 其中 N > 1.
 
 public class Solution10 {
     public static void main(String[] args) {
-        Solution10 s = new Solution10();
-        Solution so = s.new Solution();
+        Solution so = new Solution();
         long t1 = System.currentTimeMillis();
 
         System.out.println(so.fib(20));
@@ -43,7 +45,7 @@ public class Solution10 {
      * 以斐波那契数列性质 f(n + 1) = f(n) + f(n - 1) 为转移方程。
      * 
      */
-    class Solution {
+    static class Solution {
         final int CONSTANT = 1000000007;
         HashMap<Integer, Integer> map = new HashMap<>();
 

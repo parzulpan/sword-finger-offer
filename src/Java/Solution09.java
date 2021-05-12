@@ -1,6 +1,9 @@
+package Java;
+
 import java.util.LinkedList;
 
 /**
+ * @author parzulpan
 
 【剑指 Offer】09.用两个栈实现队列
 
@@ -27,8 +30,7 @@ import java.util.LinkedList;
 
 public class Solution09 {
     public static void main(String[] args) {
-        Solution09 s = new Solution09();
-        CQueue obj = s.new CQueue();
+        CQueue obj = new CQueue();
         obj.appendTail(3);
         System.out.println(obj.deleteHead());
         System.out.println(obj.deleteHead());
@@ -38,7 +40,7 @@ public class Solution09 {
      * 方法一：双栈
      * 维护两个栈，第一个栈支持插入操作，第二个栈支持删除操作，进行删除操作需要进行转栈。
      */
-    class CQueue {
+    static class CQueue {
         LinkedList<Integer> stack1, stack2;
 
         public CQueue() {

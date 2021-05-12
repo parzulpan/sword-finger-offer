@@ -1,4 +1,8 @@
+package Java;
+
 /**
+ * @author parzulpan
+
  【剑指 Offer】14-I. 剪绳子
  给你一根长度为 n 的绳子，请把绳子剪成整数长度的 m 段（m、n都是整数，n>1并且m>1），每段绳子的长度记为 k[0],k[1]...k[m-1] 。
  请问 k[0]*k[1]*...*k[m-1] 可能的最大乘积是多少？
@@ -21,13 +25,12 @@
 
 public class Solution14 {
     public static void main(String[] args) {
-        Solution14 s = new Solution14();
-        Solution solution = s.new Solution();
+        Solution solution = new Solution();
         System.out.println(solution.cuttingRope(10));
 
     }
 
-    class Solution {
+    static class Solution {
         /**
          * 方法一：数学法
          * 两个重要推论：

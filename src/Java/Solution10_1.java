@@ -1,5 +1,7 @@
+package Java;
 
 /**
+ * @author parzulpan
 
 【剑指 Offer】10-II.青蛙跳台阶问题
 
@@ -10,15 +12,14 @@
 
 public class Solution10_1 {
     public static void main(String[] args) {
-        Solution10_1 s = new Solution10_1();
-        Solution so = s.new Solution();
+        Solution so = new Solution();
         System.out.println(so.numWays(7));
     }
 
     /**
      * 方法一：斐波拉契数列的变种，动态规划
      */
-    class Solution {
+    static class Solution {
         final int CONSTANT = 1000000007;
 
         public int numWays(int n) {

@@ -1,5 +1,7 @@
+package Java;
 
 /**
+ * @author parzulpan
  
 【剑指 Offer】12.矩阵中的路径
 
@@ -30,12 +32,11 @@
 
 public class Solution12 {
     public static void main(String[] args) {
-        Solution12 s = new Solution12();
-        Solution so = s.new Solution();
+        Solution so = new Solution();
         System.out.println( so.exist(new char[][] {{'A','B','C','E'}, {'S','F','C','S'}, {'A','D','E','E'}}, "ABCCED") );
     }
 
-    class Solution {
+    static class Solution {
 
         /**
          * 方法一：典型的矩阵搜索问题，可以用 DFS + 剪枝

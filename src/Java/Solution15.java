@@ -1,4 +1,8 @@
+package Java;
+
 /**
+ * @author parzulpan
+
  【剑指 Offer】15. 二进制中 1 的个数
 
  请实现一个函数，输入一个整数，输出该数二进制表示中 1 的个数。
@@ -6,14 +10,13 @@
 
  */
 
-public class Soulution15 {
+public class Solution15 {
     public static void main(String[] args) {
-        Soulution15 soulution15 = new Soulution15();
-        Solution solution = soulution15.new Solution();
+        Solution solution = new Solution();
         System.out.println(solution.hammingWeight(9));
     }
 
-    class Solution {
+    static class Solution {
 
         /**
          * 方法一：逐位判断

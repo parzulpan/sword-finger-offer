@@ -1,5 +1,7 @@
+package Java;
 
 /**
+ * @author parzulpan
 
 【剑指 Offer】11.旋转数组的最小数字
 
@@ -12,19 +14,17 @@
 输入：[2,2,2,0,1]
 输出：0
 
-
  */
 
 public class Solution11 {
 
     public static void main(String[] args) {
-        Solution11 s = new Solution11();
-        Solution so = s.new Solution();
+        Solution so = new Solution();
         System.out.println( so.minArray(new int[] {3,4,5,1,2}) );
         System.out.println( so.minArray2(new int[] {2,2,2,0,1}) );
     }
 
-    class Solution {
+    static class Solution {
         /**
          * 方法一：暴力法
          * 根据题意，可以分析出，是对两个顺序数组分界点的寻找，而且最小数字是分界右边的数字。

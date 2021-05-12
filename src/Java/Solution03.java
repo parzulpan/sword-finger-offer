@@ -1,7 +1,11 @@
+package Java;
+
 import java.util.HashSet;
 import java.util.Set;
 
 /**
+ * @author parzulpan
+
 【剑指 Offer】03.数组中重复的数字
 
 找出数组中重复的数字。
@@ -32,9 +36,7 @@ public class Solution03 {
      * 遍历数组中的每个元素： * 将该元素加入集合中，判断是否加入成功 * 添加失败，则找到重复数字
      * 
      * 时间复杂度 O(n) 空间复杂度 O(n)
-     * 
-     * @param nums
-     * @return
+     *
      */
     public int findRepeatNumber(final int[] nums) {
         Set<Integer> set = new HashSet<>();
@@ -51,8 +53,6 @@ public class Solution03 {
     /**
      * 方法二：原地置换
      * 注意所有数字都在 0～n-1 的范围内
-     * @param nums
-     * @return
      */
     public int findRepeatNumber2(final int[] nums) {
         int len = nums.length;

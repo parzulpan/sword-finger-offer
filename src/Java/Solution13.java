@@ -1,5 +1,7 @@
+package Java;
 
 /**
+ * @author parzulpan
 
 【剑指 Offer】13.机器人的运动范围
 
@@ -22,12 +24,11 @@
 
 public class Solution13 {
     public static void main(String[] args) {
-        Solution13 s = new Solution13();
-        Solution so = s.new Solution();
+        Solution so = new Solution();
         System.out.println(so.movingCount(2, 3, 1));
     }
 
-    class Solution {
+    static class Solution {
         /**
          * 方法一：
          */
