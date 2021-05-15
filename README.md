@@ -40,4 +40,5 @@
 
 ## 参考
 
-* [《剑指Offer》](https://github.com/zhedahht/CodingInterviewChinese2)
+* [《剑指Offer》](https://github.com/zhedahht/CodingInterviewChinese2) 原书解答
+* [Krahets](https://github.com/krahets) 很多解法参考这位大佬
