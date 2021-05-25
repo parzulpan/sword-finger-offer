@@ -35,8 +35,8 @@
 
 | 题目 | 标签 | 语言 |
 | :--- | :--- | :--- |
-| [146.LRU 缓存](https://leetcode-cn.com/problems/lru-cache/) | 设计 |  |
-| [460.LFU 缓存](https://leetcode-cn.com/problems/lfu-cache/) | 设计 |  |
+| [146.LRU 缓存](https://leetcode-cn.com/problems/lru-cache/) | 设计 | [Java](src/Java/LRUCache.Java) |
+| [460.LFU 缓存](https://leetcode-cn.com/problems/lfu-cache/) | 设计 | [Java](src/Java/LFUCache.Java) |
 
 ## 参考
 

@@ -100,7 +100,7 @@ public class LRUCache {
     public void put(int key, int value) {
         DLinkedNode node = cache.get(key);
         if (node == null) {
-            // 如果 ley 不存在，创建一个新的节点
+            // 如果 key 不存在，创建一个新的节点
             DLinkedNode newNode = new DLinkedNode(key, value);
             // 添加进哈希表
             cache.put(key, newNode);
@@ -129,7 +129,7 @@ public class LRUCache {
     }
 
     /**
-     *
+     * 移动一个节点到头
      */
     private void moveToHead(DLinkedNode node) {
         removeNode(node);
