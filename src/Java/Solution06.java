@@ -38,7 +38,7 @@ public class Solution06 {
 
         // int[] Integer[] List<Integer> 三种转换
 
-        // int[] -> Integer[] 
+        // int[] -> Integer[]
         // Integer[] integers1 = Arrays.stream(data).boxed().toArray(Integer[]::new);
         // int[] -> List<Integer>
         // List<Integer> list1 = Arrays.stream(data).boxed().collect(Collectors.toList());

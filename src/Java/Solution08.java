@@ -21,7 +21,7 @@ public class Solution08 {
      * 3. 当前节点没有右子树，且父节点的左子节点不是当前节点，则应往上溯，
      * 直到存在一个向上遍历的过程中存在一个节点的父节点的左子节点正好是该节点自身，则这个父节点就是下一个节点。
      */
-    public TreeLinKNode getNext(TreeLinKNode node) {
+    public TreeLinkNode getNext(TreeLinkNode node) {
         if (node == null) {
             return null;
         }
